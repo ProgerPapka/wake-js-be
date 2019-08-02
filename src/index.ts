@@ -4,12 +4,12 @@ import graphqlHTTP from 'express-graphql';
 const port = 3000;
 
 const app = express();
-DbConnection.connect();
+
 app.use(
   '/',
   graphqlHTTP({
     graphiql: true,
-    schema: null
+    schema: undefined
   })
 );
 

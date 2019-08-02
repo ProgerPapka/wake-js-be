@@ -11,7 +11,8 @@
     "prestart": "npm run build",
     "start": "node .",
     "start:ts": "ts-node src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "dev": "nodemon"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +32,7 @@
     "@types/mongoose": "^5.5.8",
     "@types/node": "^12.6.1",
     "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
