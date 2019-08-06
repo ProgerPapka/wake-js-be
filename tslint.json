@@ -47,7 +47,8 @@
     "array-type": [true, "generic"],
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "interface-name": [true, "never-prefix"]
   },
   "rulesDirectory": []
 }

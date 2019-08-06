@@ -1,8 +1,9 @@
-import { GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
 
 export const user = new GraphQLObjectType({
-  name: 'user',
+  name: 'User',
   fields: {
+      id: {type: new GraphQLNonNull(GraphQLID)},
       name: {type: new GraphQLNonNull(GraphQLString)},
       surname: {type: new GraphQLNonNull(GraphQLString)},
       middlename: {type: GraphQLString},
