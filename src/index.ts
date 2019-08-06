@@ -1,5 +1,6 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
+import { schema } from './graphql';
 
 const port = 3000;
 
@@ -9,7 +10,7 @@ app.use(
   '/',
   graphqlHTTP({
     graphiql: true,
-    schema: undefined
+    schema
   })
 );
 
