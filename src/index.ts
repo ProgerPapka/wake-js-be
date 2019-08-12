@@ -7,7 +7,7 @@ const port = 3000;
 const app = express();
 
 app.use(
-  '/',
+  '/grphql',
   graphqlHTTP({
     graphiql: true,
     schema: Schema

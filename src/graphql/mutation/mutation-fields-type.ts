@@ -2,13 +2,13 @@ import { GraphQLOutputType, GraphQLFieldConfigArgumentMap, GraphQLFieldResolver,
 import Maybe from 'graphql/tsutils/Maybe';
 
 export interface QueryFields<TSource = any, TContext = any, TArgs = { [argName: string]: any }> {
-  [queryAction: string]: {
-    type: GraphQLOutputType;
-    args?: GraphQLFieldConfigArgumentMap;
-    resolve: GraphQLFieldResolver<TSource, TContext, TArgs>;
-    subscribe?: GraphQLFieldResolver<TSource, TContext, TArgs>;
-    deprecationReason?: Maybe<string>;
-    description?: Maybe<string>;
-    astNode?: Maybe<FieldDefinitionNode>;
-  };
+    [queryAction: string]: {
+        type: GraphQLOutputType;
+        args?: GraphQLFieldConfigArgumentMap;
+        resolve: GraphQLFieldResolver<TSource, TContext, TArgs>;
+        subscribe?: GraphQLFieldResolver<TSource, TContext, TArgs>;
+        deprecationReason?: Maybe<string>;
+        description?: Maybe<string>;
+        astNode?: Maybe<FieldDefinitionNode>;
+    };
 }

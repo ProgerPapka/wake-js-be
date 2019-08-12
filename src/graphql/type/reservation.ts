@@ -7,6 +7,7 @@ export const reservation = new GraphQLObjectType({
   fields: {
       id: {type: new GraphQLNonNull(GraphQLID)},
       user: {type: new GraphQLNonNull(user)},
-      service: {type: new GraphQLNonNull(service)}
+      service: {type: new GraphQLNonNull(service)},
+      slot: {type: new GraphQLNonNull(service)}
   }
 });
