@@ -7,6 +7,19 @@ export interface Service {
     photos: Array<string>;
 }
 
+export interface ServiceFilters {
+    nameLike: string;
+    descriptionLike: string;
+    priceFrom: number;
+    priceTo: number;
+}
+
+export interface ServiceUpdatedFields {
+    name?: string;
+    description?: string;
+    price?: number;
+}
+
 export interface ServiceDocument extends Document, Service {}
 
 export const ServiceSchema = new Schema({
@@ -30,4 +43,4 @@ export const ServiceSchema = new Schema({
     }
 });
 
-export const service = model<ServiceDocument>('Service', ServiceSchema);
+export const ServiceModel = model<ServiceDocument>('Service', ServiceSchema);
