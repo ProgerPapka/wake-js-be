@@ -3,10 +3,26 @@ import { Document, Schema, model } from 'mongoose';
 export interface User {
     name: string;
     surname: string;
-    middlename: string;
+    middlename?: string;
     phone: string;
     email: string;
     password: string;
+}
+
+export interface UserFilters {
+    nameLike?: string;
+    surnameLike?: string;
+    middlenameLike?: string;
+    phoneLike?: string;
+    emailLike?: string;
+}
+
+export interface UserUpdatedFields {
+    name?: string;
+    surname?: string;
+    middlename?: string;
+    phone?: string;
+    email?: string;
 }
 
 export interface UserDocument extends Document, User {}
@@ -35,4 +51,4 @@ export const UserSchema = new Schema({
     }
 });
 
-export const user = model<UserDocument>('User', UserSchema);
+export const UserModel = model<UserDocument>('User', UserSchema);
