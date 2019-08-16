@@ -1,6 +1,7 @@
 import { QueryFields } from '../mutation/mutation-fields-type';
 import { service } from '../type';
 import { GraphQLID, GraphQLList, GraphQLNonNull, GraphQLString } from 'graphql';
+import { ServiceRepository } from '../../db/repository/service-repository';
 
 export const serviceQueries: QueryFields = {
     service: {
@@ -8,13 +9,13 @@ export const serviceQueries: QueryFields = {
         args: {
             id: { type: new GraphQLNonNull(GraphQLID) }
         },
-        resolve: (source, args) => ({ name: 'test-serv', price: 2341.34 }) // TODO: implement
+        resolve: (source, {id}) => ServiceRepository.findById(id)
     },
     services: {
         type: new GraphQLNonNull(new GraphQLList(service)),
         args: {
             name: { type: GraphQLString }
         },
-        resolve: (source, args) => [] // TODO: implement
+        resolve: (source, args) => ServiceRepository.findAll()
     }
 };

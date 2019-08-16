@@ -1,6 +1,7 @@
 import { QueryFields } from '../mutation/mutation-fields-type';
-import { service, user as userType } from '../type';
+import { user as userType } from '../type';
 import { GraphQLID, GraphQLList, GraphQLNonNull } from 'graphql';
+import { UserRepository } from '../../db/repository/user-repository';
 
 export const userQueries: QueryFields = {
     user: {
@@ -8,10 +9,10 @@ export const userQueries: QueryFields = {
         args: {
             id: { type: new GraphQLNonNull(GraphQLID) }
         },
-        resolve: (source, { id }) => ({ test: '12', name: 'ter' }) // TODO: implement
+        resolve: (source, { id }) => UserRepository.findById(id)
     },
     users: {
         type: new GraphQLNonNull(new GraphQLList(userType)),
-        resolve: (source, args) => []
+        resolve: (source, args) => UserRepository.findAll()
     }
 };

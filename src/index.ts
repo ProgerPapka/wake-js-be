@@ -18,4 +18,4 @@ app.use(
 );
 
 app.listen(port);
-console.log('GraphQL API server running at localhost: ' + port);
+console.log(`GraphQL API server running at localhost: http://localhost:${port}/grphql`);

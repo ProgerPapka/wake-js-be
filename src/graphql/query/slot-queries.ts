@@ -1,6 +1,7 @@
 import { QueryFields } from '../mutation/mutation-fields-type';
 import { GraphQLID, GraphQLList, GraphQLNonNull, GraphQLString } from 'graphql';
 import { service, slot } from '../type';
+import { SlotRepository } from '../../db/repository/slot-repository';
 
 export const slotQueries: QueryFields = {
     slot: {
@@ -8,7 +9,7 @@ export const slotQueries: QueryFields = {
         args: {
             id: { type: new GraphQLNonNull(GraphQLID) }
         },
-        resolve: (source, args) => ({ date: '12.12.2019' }) // TODO: implement
+        resolve: (source, {id}) => SlotRepository.findById(id)
     },
     slots: {
         type: new GraphQLNonNull(new GraphQLList(slot)),
@@ -16,6 +17,6 @@ export const slotQueries: QueryFields = {
             startDate: { type: GraphQLString },
             endDate: { type: GraphQLString },
         },
-        resolve: (source, args) => [] // TODO: implement
+        resolve: (source, args) => SlotRepository.findAll()
     }
 };

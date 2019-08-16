@@ -1,6 +1,7 @@
 import { QueryFields } from '../mutation/mutation-fields-type';
 import { reservation, service } from '../type';
 import { GraphQLID, GraphQLList, GraphQLNonNull } from 'graphql';
+import { ReservationRepository } from '../../db/repository/reservation-repository';
 
 export const reservationQueries: QueryFields = {
     reservation: {
@@ -8,12 +9,7 @@ export const reservationQueries: QueryFields = {
         args: {
             id: { type: new GraphQLNonNull(GraphQLID) }
         },
-        resolve: (source, { id }) => ({
-            id: '1',
-            user: { name: 'test' },
-            service: { name: 'test-service' },
-            slot: { date: '12.12.2019' }
-        }) // TODO: implement
+        resolve: (source, { id }) => ReservationRepository.findById(id)
     },
     reservations: {
         type: new GraphQLNonNull(new GraphQLList(reservation)),
@@ -21,6 +17,6 @@ export const reservationQueries: QueryFields = {
             user: { type: GraphQLID },
             service: { type: GraphQLID }
         },
-        resolve: (source, args) => [] // TODO: implement
+        resolve: (source, args) => ReservationRepository.findAll()
     }
 };
