@@ -5,7 +5,9 @@ import { BasicReadableRepository } from './basic/basic-readable-repository';
 
 export interface ServiceRepositoryType
     extends BasicReadableRepository<Service, ServiceDocument>,
-        BasicModifiableRepository<Service, ServiceUpdatedFields, ServiceDocument> {}
+        BasicModifiableRepository<Service, ServiceUpdatedFields, ServiceDocument> {
+    addPhotos: (id: Schema.Types.ObjectId, photos: Array<string>) => DocumentQuery<Service, ServiceDocument>;
+}
 
 class ServiceRepositoryImpl implements ServiceRepositoryType {
     public remove(id: Schema.Types.ObjectId): DocumentQuery<Service, ServiceDocument> {
@@ -27,8 +29,16 @@ class ServiceRepositoryImpl implements ServiceRepositoryType {
         return ServiceModel.find({
             name: new RegExp(`^${filters.nameLike}$`, 'i'),
             description: new RegExp(`^${filters.descriptionLike}$`, 'i'),
-            price: {$gt: filters.priceFrom, $lt: filters.priceTo}
+            price: { $gt: filters.priceFrom, $lt: filters.priceTo }
         });
+    }
+    public addPhotos(id: Schema.Types.ObjectId, photos: Array<string>):
+        DocumentQuery<Service, ServiceDocument> {
+        return ServiceModel.findOneAndUpdate(
+            id,
+            {photos: {$push: {photos}}},
+            {new: true, upsert: true}
+        );
     }
 }
 

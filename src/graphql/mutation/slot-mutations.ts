@@ -10,7 +10,7 @@ export const slotMutations: MutationFields = {
             startDate: { type: new GraphQLNonNull(GraphQLString) },
             endDate: { type: new GraphQLNonNull(GraphQLString) }
         },
-        resolve: (source, { id, startDate, endDate }) =>
+        resolve: (source, { startDate, endDate }) =>
             SlotRepository.save({ startDate: new Date(startDate), endDate: new Date(endDate) })
     },
     removeSlot: {
