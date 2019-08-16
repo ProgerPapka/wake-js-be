@@ -6,6 +6,17 @@ export interface Reservation {
     slot: Schema.Types.ObjectId;
 }
 
+export interface ReservationFilters {
+    user?: Schema.Types.ObjectId;
+    service?: Schema.Types.ObjectId;
+    slot?: Schema.Types.ObjectId;
+}
+
+export interface ReservationUpdatedFields {
+    service?: Schema.Types.ObjectId;
+    slot?: Schema.Types.ObjectId;
+}
+
 export interface ReservationDocument extends Document, Reservation {}
 
 export const ReservationSchema = new Schema({
@@ -23,4 +34,4 @@ export const ReservationSchema = new Schema({
     }
 });
 
-export const reservation = model<ReservationDocument>('Reservation', ReservationSchema);
+export const ReservationModel = model<ReservationDocument>('Reservation', ReservationSchema);

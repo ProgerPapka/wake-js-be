@@ -4,8 +4,7 @@ export const slot = new GraphQLObjectType({
   name: 'Slot',
   fields: {
       id: {type: new GraphQLNonNull(GraphQLID)},
-      date: {type: new GraphQLNonNull(GraphQLString)},
-      from: {type: new GraphQLNonNull(GraphQLString)},
-      to: {type: new GraphQLNonNull(GraphQLString)}
+      startDate: {type: new GraphQLNonNull(GraphQLString)},
+      endDate: {type: new GraphQLNonNull(GraphQLString)}
   }
 });

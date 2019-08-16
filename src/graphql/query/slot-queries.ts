@@ -13,10 +13,8 @@ export const slotQueries: QueryFields = {
     slots: {
         type: new GraphQLNonNull(new GraphQLList(slot)),
         args: {
-            dateFrom: { type: GraphQLString },
-            dateTo: { type: GraphQLString },
-            timeFrom: { type: GraphQLString },
-            timeTo: { type: GraphQLString }
+            startDate: { type: GraphQLString },
+            endDate: { type: GraphQLString },
         },
         resolve: (source, args) => [] // TODO: implement
     }
