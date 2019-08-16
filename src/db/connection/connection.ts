@@ -8,7 +8,8 @@ export const DbConnection = {
                 connectionConfig.url,
                 {
                     user: connectionConfig.login,
-                    pass: connectionConfig.password
+                    pass: connectionConfig.password,
+                    useNewUrlParser: true
                 }
             );
             console.log('Database connection successful');

@@ -1,15 +1,15 @@
 import { MutationFields } from '../query/query-fields-type';
 import { service } from '../type';
-import { GraphQLID, GraphQLList, GraphQLNonNull, GraphQLString } from 'graphql';
+import { GraphQLFloat, GraphQLID, GraphQLList, GraphQLNonNull, GraphQLString } from 'graphql';
 import { ServiceRepository } from '../../db/repository/service-repository';
 
 export const serviceMutations: MutationFields = {
     service: {
         type: service,
         args: {
-            name: { type: new GraphQLNonNull(GraphQLID) },
-            description: { type: new GraphQLNonNull(GraphQLID) },
-            price: { type: new GraphQLNonNull(GraphQLID) },
+            name: { type: new GraphQLNonNull(GraphQLString) },
+            description: { type: new GraphQLNonNull(GraphQLString) },
+            price: { type: new GraphQLNonNull(GraphQLFloat) },
             photos: { type: new GraphQLList(GraphQLID) }
         },
         resolve: (source, { name, description, price, photos = [] }) =>
@@ -26,7 +26,7 @@ export const serviceMutations: MutationFields = {
             service: { type: new GraphQLNonNull(GraphQLID) },
             photos: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) }
         },
-        resolve: (source, { service, photos }) => ServiceRepository.findById(service).then((res) => res.photos)
+        resolve: (source, { service, photos }) => ServiceRepository.findById(service).then(res => res.photos)
     },
     removeService: {
         type: service,
