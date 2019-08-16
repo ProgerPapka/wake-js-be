@@ -7,6 +7,18 @@ export interface Slot {
     to: string;
 }
 
+export interface SlotFilters {
+    startDate: Date;
+    endDate: Date;
+}
+
+export interface SlotUpdatedFields {
+    value?: Date;
+    date?: string;
+    from?: string;
+    to?: string;
+}
+
 export interface SlotDocument extends Document, Slot {}
 
 export const SlotSchema = new Schema({
@@ -28,4 +40,4 @@ export const SlotSchema = new Schema({
     }
 });
 
-export const slot = model<SlotDocument>('Slot', SlotSchema);
+export const SlotModel = model<SlotDocument>('Slot', SlotSchema);

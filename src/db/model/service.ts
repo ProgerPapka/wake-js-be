@@ -8,10 +8,10 @@ export interface Service {
 }
 
 export interface ServiceFilters {
-    nameLike: string;
-    descriptionLike: string;
-    priceFrom: number;
-    priceTo: number;
+    nameLike?: string;
+    descriptionLike?: string;
+    priceFrom?: number;
+    priceTo?: number;
 }
 
 export interface ServiceUpdatedFields {
