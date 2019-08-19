@@ -14,25 +14,25 @@ export interface ReservationRepositoryType
         BasicModifiableRepository<Reservation, ReservationUpdatedFields, ReservationDocument> {}
 
 class ReservationRepositoryImpl implements ReservationRepositoryType {
-    public remove(id: Schema.Types.ObjectId): DocumentQuery<Reservation, ReservationDocument> {
+    public remove(id: Schema.Types.ObjectId): DocumentQuery<ReservationDocument, ReservationDocument> {
         return ReservationModel.findByIdAndDelete(id);
     }
-    public save(model: Reservation): Promise<Reservation> {
+    public save(model: Reservation): Promise<ReservationDocument> {
         return new ReservationModel(model).save();
     }
     public update(
         id: Schema.Types.ObjectId,
         model: ReservationUpdatedFields
-    ): DocumentQuery<Reservation, ReservationDocument> {
+    ): DocumentQuery<ReservationDocument, ReservationDocument> {
         return ReservationModel.findByIdAndUpdate(id, model);
     }
-    public findById(id: Schema.Types.ObjectId): DocumentQuery<Reservation, ReservationDocument> {
+    public findById(id: Schema.Types.ObjectId): DocumentQuery<ReservationDocument, ReservationDocument> {
         return ReservationModel.findById(id);
     }
-    public findAll(): DocumentQuery<Array<Reservation>, ReservationDocument> {
+    public findAll(): DocumentQuery<Array<ReservationDocument>, ReservationDocument> {
         return ReservationModel.find();
     }
-    public find(filters: ReservationFilters): DocumentQuery<Array<Reservation>, ReservationDocument> {
+    public find(filters: ReservationFilters): DocumentQuery<Array<ReservationDocument>, ReservationDocument> {
         return ReservationModel.find(filters);
     }
 }

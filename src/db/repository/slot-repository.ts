@@ -8,22 +8,22 @@ export interface SlotRepositoryType
         BasicModifiableRepository<Slot, SlotUpdatedFields, SlotDocument> {}
 
 class SlotRepositoryImpl implements SlotRepositoryType {
-    public remove(id: Schema.Types.ObjectId): DocumentQuery<Slot, SlotDocument> {
+    public remove(id: Schema.Types.ObjectId): DocumentQuery<SlotDocument, SlotDocument> {
         return SlotModel.findByIdAndDelete(id);
     }
-    public save(model: Slot): Promise<Slot> {
+    public save(model: Slot): Promise<SlotDocument> {
         return new SlotModel(model).save();
     }
-    public update(id: Schema.Types.ObjectId, model: SlotUpdatedFields): DocumentQuery<Slot, SlotDocument> {
+    public update(id: Schema.Types.ObjectId, model: SlotUpdatedFields): DocumentQuery<SlotDocument, SlotDocument> {
         return SlotModel.findByIdAndUpdate(id, model);
     }
-    public findById(id: Schema.Types.ObjectId): DocumentQuery<Slot, SlotDocument> {
+    public findById(id: Schema.Types.ObjectId): DocumentQuery<SlotDocument, SlotDocument> {
         return SlotModel.findById(id);
     }
-    public findAll(): DocumentQuery<Array<Slot>, SlotDocument> {
+    public findAll(): DocumentQuery<Array<SlotDocument>, SlotDocument> {
         return SlotModel.find();
     }
-    public find(filters: SlotFilters): DocumentQuery<Array<Slot>, SlotDocument> {
+    public find(filters: SlotFilters): DocumentQuery<Array<SlotDocument>, SlotDocument> {
         return SlotModel.find({
             value: { $gte: filters.startDate, $lte: filters.endDate }
         });

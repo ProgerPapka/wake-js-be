@@ -26,7 +26,7 @@ export const serviceMutations: MutationFields = {
             service: { type: new GraphQLNonNull(GraphQLID) },
             photos: { type: new GraphQLNonNull(new GraphQLList(GraphQLString)) }
         },
-        resolve: (source, { service, photos }) => ServiceRepository.findById(service).then(res => res.photos)
+        resolve: (source, { service, photos }) => ServiceRepository.addPhotos(service, photos).then((res) => res.photos)
     },
     removeService: {
         type: service,

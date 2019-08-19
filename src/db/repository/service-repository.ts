@@ -10,35 +10,33 @@ export interface ServiceRepositoryType
 }
 
 class ServiceRepositoryImpl implements ServiceRepositoryType {
-    public remove(id: Schema.Types.ObjectId): DocumentQuery<Service, ServiceDocument> {
+    public remove(id: Schema.Types.ObjectId): DocumentQuery<ServiceDocument, ServiceDocument> {
         return ServiceModel.findByIdAndDelete(id);
     }
-    public save(model: Service): Promise<Service> {
+    public save(model: Service): Promise<ServiceDocument> {
         return new ServiceModel(model).save();
     }
-    public update(id: Schema.Types.ObjectId, model: ServiceUpdatedFields): DocumentQuery<Service, ServiceDocument> {
+    public update(
+        id: Schema.Types.ObjectId,
+        model: ServiceUpdatedFields
+    ): DocumentQuery<ServiceDocument, ServiceDocument> {
         return ServiceModel.findByIdAndUpdate(id, model);
     }
-    public findById(id: Schema.Types.ObjectId): DocumentQuery<Service, ServiceDocument> {
+    public findById(id: Schema.Types.ObjectId): DocumentQuery<ServiceDocument, ServiceDocument> {
         return ServiceModel.findById(id);
     }
-    public findAll(): DocumentQuery<Array<Service>, ServiceDocument> {
+    public findAll(): DocumentQuery<Array<ServiceDocument>, ServiceDocument> {
         return ServiceModel.find();
     }
-    public find(filters: ServiceFilters): DocumentQuery<Array<Service>, ServiceDocument> {
+    public find(filters: ServiceFilters): DocumentQuery<Array<ServiceDocument>, ServiceDocument> {
         return ServiceModel.find({
             name: new RegExp(`^${filters.nameLike}$`, 'i'),
             description: new RegExp(`^${filters.descriptionLike}$`, 'i'),
             price: { $gt: filters.priceFrom, $lt: filters.priceTo }
         });
     }
-    public addPhotos(id: Schema.Types.ObjectId, photos: Array<string>):
-        DocumentQuery<Service, ServiceDocument> {
-        return ServiceModel.findOneAndUpdate(
-            id,
-            {photos: {$push: {photos}}},
-            {new: true, upsert: true}
-        );
+    public addPhotos(id: Schema.Types.ObjectId, photos: Array<string>): DocumentQuery<Service, ServiceDocument> {
+        return ServiceModel.findOneAndUpdate(id, { photos: { $push: { photos } } }, { new: true, upsert: true });
     }
 }
 

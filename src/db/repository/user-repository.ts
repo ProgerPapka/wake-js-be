@@ -8,22 +8,22 @@ export interface UserRepositoryType
         BasicModifiableRepository<User, UserUpdatedFields, UserDocument> {}
 
 class UserRepositoryImpl implements UserRepositoryType {
-    public remove(id: Schema.Types.ObjectId): DocumentQuery<User, UserDocument> {
+    public remove(id: Schema.Types.ObjectId): DocumentQuery<UserDocument, UserDocument> {
         return UserModel.findByIdAndDelete(id);
     }
-    public save(model: User): Promise<User> {
+    public save(model: User): Promise<UserDocument> {
         return new UserModel(model).save();
     }
-    public update(id: Schema.Types.ObjectId, model: UserUpdatedFields): DocumentQuery<User, UserDocument> {
+    public update(id: Schema.Types.ObjectId, model: UserUpdatedFields): DocumentQuery<UserDocument, UserDocument> {
         return UserModel.findByIdAndUpdate(id, model);
     }
-    public findById(id: Schema.Types.ObjectId): DocumentQuery<User, UserDocument> {
+    public findById(id: Schema.Types.ObjectId): DocumentQuery<UserDocument, UserDocument> {
         return UserModel.findById(id);
     }
-    public findAll(): DocumentQuery<Array<User>, UserDocument> {
+    public findAll(): DocumentQuery<Array<UserDocument>, UserDocument> {
         return UserModel.find();
     }
-    public find(filters: UserFilters): DocumentQuery<Array<User>, UserDocument> {
+    public find(filters: UserFilters): DocumentQuery<Array<UserDocument>, UserDocument> {
         return UserModel.find({
             name: new RegExp(`^${filters.nameLike}$`, 'i'),
             surname: new RegExp(`^${filters.surnameLike}$`, 'i'),
